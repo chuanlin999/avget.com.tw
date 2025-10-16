@@ -6,12 +6,23 @@
     <title>AVGET — Bilingual Homepage</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="AVGET official site — English/中文 bilingual homepage." />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="theme-color" content="#0f172a" />
     <meta name="color-scheme" content="light dark" />
     <link rel="canonical" href="https://avget.com.tw/" />
+
+    <!-- Icons & PWA -->
     <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Performance hints: adjust origins to your actual static hosts -->
+    <link rel="preconnect" href="https://avget.com.tw" crossorigin />
+    <!-- Example CDN; remove or change if not used -->
+    <link rel="preconnect" href="https://cdn.avget.com.tw" crossorigin />
 
     <!-- Open Graph -->
+    <meta property="og:site_name" content="AVGET" />
     <meta property="og:title" content="AVGET" />
     <meta property="og:description" content="AVGET official site — English/中文 bilingual homepage." />
     <meta property="og:url" content="https://avget.com.tw/" />
@@ -24,28 +35,91 @@
     <meta name="twitter:description" content="AVGET official site — English/中文 bilingual homepage." />
     <meta name="twitter:image" content="https://avget.com.tw/images/og-default.jpg" />
 
+    <!-- No-FOUC initial i18n state: set lang and hidden before paint -->
+    <script>
+      (function initLangEarly() {
+        try {
+          var saved = localStorage.getItem('avget_lang');
+          var nav = (navigator.language || (navigator.languages && navigator.languages[0]) || 'en').toLowerCase();
+          var lang = saved ? saved : (nav.indexOf('zh') === 0 ? 'zh' : 'en');
+          document.documentElement.lang = (lang === 'en') ? 'en' : 'zh-Hant';
+          // Pre-hide non-active section before first paint
+          var css = (lang === 'en') ? '#lang-zh{display:none !important;}' : '#lang-en{display:none !important;}';
+          var style = document.createElement('style');
+          style.textContent = css;
+          document.head.appendChild(style);
+        } catch (e) {}
+      })();
+    </script>
+
     <!-- Styles -->
     <link rel="preload" href="/assets/css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/assets/css/styles.css"></noscript>
+
+    <!-- JSON-LD structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://avget.com.tw/#org",
+            "name": "AVGET",
+            "url": "https://avget.com.tw/",
+            "logo": "https://avget.com.tw/images/logo.png",
+            "sameAs": [
+              "https://www.facebook.com/avget",
+              "https://www.linkedin.com/company/avget"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://avget.com.tw/#website",
+            "url": "https://avget.com.tw/",
+            "name": "AVGET",
+            "publisher": { "@id": "https://avget.com.tw/#org" },
+            "inLanguage": ["en", "zh-Hant"],
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://avget.com.tw/search?q={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          }
+        ]
+      }
+    </script>
+
+    <!-- GA4: replace G-XXXXXXX with your Measurement ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXX');
+    </script>
   </head>
   <body>
-    <header>
+    <a href="#main" class="skip-link" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">
+      Skip to main content
+    </a>
+
+    <header role="banner">
       <nav aria-label="Language toggle" style="display:flex; gap:0.5rem; align-items:center; padding:1rem;">
-        <button id="btn-en" type="button" aria-pressed="true">English</button>
+        <button id="btn-en" type="button" aria-pressed="true" aria-current="page">English</button>
         <button id="btn-zh" type="button" aria-pressed="false">繁體中文</button>
       </nav>
     </header>
 
-    <main>
+    <main id="main" role="main">
       <!-- English section -->
-      <section id="lang-en">
+      <section id="lang-en" lang="en">
         <h1>AVGET — Bilingual Homepage</h1>
         <p>Welcome to the AVGET official site.</p>
         <p>Explore our products, services, and updates in English.</p>
       </section>
 
       <!-- Chinese (Traditional) section -->
-      <section id="lang-zh" hidden>
+      <section id="lang-zh" lang="zh-Hant">
         <h1>AVGET — 雙語首頁</h1>
         <p>歡迎來到 AVGET 官方網站。</p>
         <p>以繁體中文瀏覽我們的產品、服務與最新消息。</p>
@@ -74,8 +148,18 @@
           const isEN = lang === 'en';
           en.hidden = !isEN;
           zh.hidden = isEN;
+
           btnEn.setAttribute('aria-pressed', String(isEN));
           btnZh.setAttribute('aria-pressed', String(!isEN));
+
+          if (isEN) {
+            btnEn.setAttribute('aria-current', 'page');
+            btnZh.removeAttribute('aria-current');
+          } else {
+            btnZh.setAttribute('aria-current', 'page');
+            btnEn.removeAttribute('aria-current');
+          }
+
           document.documentElement.lang = isEN ? 'en' : 'zh-Hant';
           try { localStorage.setItem('avget_lang', lang); } catch {}
         };
