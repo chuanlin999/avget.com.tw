@@ -1,1 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>AVGET — Bilingual Homepage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="AVGET official site — English/中文 bilingual homepage." />
+  <link rel="canonical" href="https://avget.com.tw/" />
+  <link rel="icon" href="/favicon.ico" />
+  <!-- Open Graph / SEO -->
+  <meta property="og:title" content="AVGET" />
+  <meta property="og:description" content="AVGET official site — English/中文 bilingual homepage." />
+  <meta property="og:url" content="https://avget.com.tw/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://avget.com.tw/images/og-default.jpg" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>AVGET</h1>
+      <nav class="lang-switch">
+        <button id="btn-en" aria-label="Switch to English">English</button>
+        <button id="btn-zh" aria-label="切換成中文">中文</button>
+      </nav>
+    </div>
+  </header>
 
+  <main class="container">
+    <!-- English section -->
+    <section id="lang-en" class="lang-section" aria-labelledby="en-title">
+      <h2 id="en-title">Welcome</h2>
+      <p>Your site is live. This bilingual homepage is ready for GitHub Pages.</p>
+      <ul>
+        <li>Custom domain: avget.com.tw</li>
+        <li>www subdomain via CNAME</li>
+        <li>HTTPS will enable after DNS completes.</li>
+      </ul>
+      <a class="btn" href="/about/">About</a>
+      <a class="btn" href="/contact/">Contact</a>
+    </section>
+
+    <!-- Chinese section -->
+    <section id="lang-zh" class="lang-section" aria-labelledby="zh-title" hidden>
+      <h2 id="zh-title">歡迎</h2>
+      <p>網站已上線。這是 GitHub Pages 的英文／中文雙語首頁。</p>
+      <ul>
+        <li>自訂網域：avget.com.tw</li>
+        <li>www 子網域使用 CNAME</li>
+        <li>DNS 完成後會自動開啟 HTTPS。</li>
+      </ul>
+      <a class="btn" href="/about/">關於我們</a>
+      <a class="btn" href="/contact/">聯絡我們</a>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <small>© AVGET — All rights reserved.</small>
+    </div>
+  </footer>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>  
