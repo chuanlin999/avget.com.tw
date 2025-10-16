@@ -1,87 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <title>AVGET — Bilingual Homepage</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="AVGET official site — English/中文 bilingual homepage." />
-  <meta name="theme-color" content="#0f172a" />
-  <meta name="color-scheme" content="light dark" />
-  <link rel="canonical" href="https://avget.com.tw/" />
-  <link rel="icon" href="/favicon.ico" />
+  <head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <title>AVGET — Bilingual Homepage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="AVGET official site — English/中文 bilingual homepage." />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="canonical" href="https://avget.com.tw/" />
+    <link rel="icon" href="/favicon.ico" />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="AVGET" />
-  <meta property="og:description" content="AVGET official site — English/中文 bilingual homepage." />
-  <meta property="og:url" content="https://avget.com.tw/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://avget.com.tw/images/og-default.jpg" />
+    <!-- Open Graph -->
+    <meta property="og:title" content="AVGET" />
+    <meta property="og:description" content="AVGET official site — English/中文 bilingual homepage." />
+    <meta property="og:url" content="https://avget.com.tw/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://avget.com.tw/images/og-default.jpg" />
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="AVGET" />
-  <meta name="twitter:description" content="AVGET official site — English/中文 bilingual homepage." />
-  <meta name="twitter:image" content="https://avget.com.tw/images/og-default.jpg" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AVGET" />
+    <meta name="twitter:description" content="AVGET official site — English/中文 bilingual homepage." />
+    <meta name="twitter:image" content="https://avget.com.tw/images/og-default.jpg" />
 
-  <!-- Styles -->
-  <link rel="preload" href="/assets/css/styles.css" as="style" onload="this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="/assets/css/styles.css" /></noscript>
-</head>
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
-
-  <header class="site-header">
-    <div class="container">
-      <h1 class="brand">AVGET</h1>
-      <nav class="lang-switch" aria-label="Language switch">
-        <button id="btn-en" aria-label="Switch to English" aria-pressed="true">English</button>
-        <button id="btn-zh" aria-label="切換成中文" aria-pressed="false">中文</button>
+    <!-- Styles -->
+    <link rel="preload" href="/assets/css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/assets/css/styles.css"></noscript>
+  </head>
+  <body>
+    <header>
+      <nav aria-label="Language toggle" style="display:flex; gap:0.5rem; align-items:center; padding:1rem;">
+        <button id="btn-en" type="button" aria-pressed="true">English</button>
+        <button id="btn-zh" type="button" aria-pressed="false">繁體中文</button>
       </nav>
-    </div>
-  </header>
+    </header>
 
-  <main id="main" class="container">
-    <!-- English -->
-    <section id="lang-en" class="lang-section" aria-labelledby="en-title">
-      <h2 id="en-title">Welcome</h2>
-      <p>Your site is live. This bilingual homepage is ready for GitHub Pages.</p>
-      <ul>
-        <li>Custom domain: avget.com.tw</li>
-        <li>www subdomain via CNAME</li>
-        <li>HTTPS will enable after DNS completes.</li>
-      </ul>
-      <p class="actions">
-        <a class="btn" href="/about/">About</a>
-        <a class="btn" href="/contact/">Contact</a>
-      </p>
-    </section>
+    <main>
+      <!-- English section -->
+      <section id="lang-en">
+        <h1>AVGET — Bilingual Homepage</h1>
+        <p>Welcome to the AVGET official site.</p>
+        <p>Explore our products, services, and updates in English.</p>
+      </section>
 
-    <!-- 中文 -->
-    <section id="lang-zh" class="lang-section" aria-labelledby="zh-title" hidden>
-      <h2 id="zh-title">歡迎</h2>
-      <p>網站已上線。這是 GitHub Pages 的英文／中文雙語首頁。</p>
-      <ul>
-        <li>自訂網域：avget.com.tw</li>
-        <li>www 子網域使用 CNAME</li>
-        <li>DNS 完成後會自動開啟 HTTPS。</li>
-      </ul>
-      <p class="actions">
-        <a class="btn" href="/about/">關於我們</a>
-        <a class="btn" href="/contact/">聯絡我們</a>
-      </p>
-    </section>
-  </main>
+      <!-- Chinese (Traditional) section -->
+      <section id="lang-zh" hidden>
+        <h1>AVGET — 雙語首頁</h1>
+        <p>歡迎來到 AVGET 官方網站。</p>
+        <p>以繁體中文瀏覽我們的產品、服務與最新消息。</p>
+      </section>
+    </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <small>© AVGET — All rights reserved.</small>
-    </div>
-  </footer>
+    <footer style="margin-top:2rem; padding:1rem; text-align:center;">
+      <small>&copy; <span id="year"></span> AVGET. All rights reserved.</small>
+    </footer>
 
-  <noscript>
-    <p class="container">Note: JavaScript is required for language switching. 請啟用 JavaScript 以切換語言。</p>
-  </noscript>
+    <!-- Language switch & small utilities -->
+    <script>
+      (() => {
+        const en = document.getElementById('lang-en');
+        const zh = document.getElementById('lang-zh');
+        const btnEn = document.getElementById('btn-en');
+        const btnZh = document.getElementById('btn-zh');
+        const yearEl = document.getElementById('year');
 
-  <script src="/assets/js/main.js" defer></script>
-</body>
+        // Year
+        if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+        if (!en || !zh || !btnEn || !btnZh) return;
+
+        const apply = (lang) => {
+          const isEN = lang === 'en';
+          en.hidden = !isEN;
+          zh.hidden = isEN;
+          btnEn.setAttribute('aria-pressed', String(isEN));
+          btnZh.setAttribute('aria-pressed', String(!isEN));
+          document.documentElement.lang = isEN ? 'en' : 'zh-Hant';
+          try { localStorage.setItem('avget_lang', lang); } catch {}
+        };
+
+        const getPrefLang = () => {
+          try {
+            const saved = localStorage.getItem('avget_lang');
+            if (saved) return saved;
+          } catch {}
+          const nav = (navigator.language || (navigator.languages && navigator.languages[0]) || 'en').toLowerCase();
+          return nav.startsWith('zh') ? 'zh' : 'en';
+        };
+
+        apply(getPrefLang());
+        btnEn.addEventListener('click', () => apply('en'));
+        btnZh.addEventListener('click', () => apply('zh'));
+      })();
+    </script>
+  </body>
 </html>
